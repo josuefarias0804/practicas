@@ -1,23 +1,36 @@
+import java.awt.List;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Persona {
 	
 	private String nombre;
 	private String apellido;
-	private String fecha_nacimiento;
-	private String profesion;
+	protected String fecha_nacimiento;
+	protected static String profesion;
+	private String padre;
+	//private String[] hijos = new String[2];
+	private String[] hijos;
+		
+	public Persona() {
+		
+	}
 
-	public Persona(String nombre, String apellido, String fecha_nacimiento, String profesion) {
+	
+	public Persona(String nombre, String apellido, String fecha_nacimiento, String profesion, String padre, String[] hijos) {
 		
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.profesion = profesion;
+		this.padre = padre;
+		this.hijos = hijos;
+		//this.hijos.add("olmedo");
 				
 	}
 	
@@ -40,6 +53,18 @@ public class Persona {
 	    }
 	    return anos;
 	  }
+	
+	
+	public void agregarHijos() {
+		
+	}
+	
+	public String decirHola() {
+		
+		Profesional pr = new Profesional();	
+		
+		return "Hola!, soy una persona y me llamo ";
+	}
 	
 	public String getNombreCompleto(Persona persona) {
 		
@@ -76,6 +101,22 @@ public class Persona {
 
 	public void setProfesion(String profesion) {
 		this.profesion = profesion;
+	}
+	
+	public String getPadre() {
+		return padre;
+	}
+
+	public void setPadre(String padre) {
+		this.padre = padre;
+	}
+
+	public String[] getHijos() {
+		return hijos;
+	}
+
+	public void setHijos(String[] hijos) {
+		this.hijos = hijos;
 	}
 
 }
