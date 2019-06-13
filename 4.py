@@ -6,7 +6,7 @@ diccionario = {'nombre': 'Carlos', 'apellido': 'Lopez', 'fecha_nacimiento' : x}
 print(diccionario['nombre'])
 
 diccionario['nombre'] = 'Luis'
-diccionario['prfesion'] = 'Carpintero'
+diccionario['profesion'] = 'Carpintero'
 
 
 def nombre_completo(diccionario):
@@ -15,3 +15,4 @@ def nombre_completo(diccionario):
 print(nombre_completo(diccionario))
 
 print(f'La profesión de {nombre_completo(diccionario)} es {diccionario["profesion"]}')
+
