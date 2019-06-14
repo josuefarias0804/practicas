@@ -1,6 +1,8 @@
+import datetime
+
 class Persona:
 
-    def __init__(self, nombre, apellido, fecha_nacimiento, profesion, padre=None, hijos=[]):
+    def __init__(self, nombre, apellido, fecha_nacimiento, profesion='', padre=None, hijos=[]):
         self.nombre = nombre
         self.apellido = apellido
         self.fecha_nacimiento = fecha_nacimiento
@@ -15,19 +17,20 @@ class Persona:
         print('Hola! soy una persona y me llamo ' + self.nombre_completo())
 
     def agregar_hijo(self, hijo):
-        self.hijo = self.padre
-        return self.padre
+        hijo.padre = self
+        self.hijos.append(hijo)
+
+    def cant_hijos(self):
+        return len(self.hijos)
+
+    def hijo_mayor(self):
+        #devolver el hijo mayor, si no hay ninguno devolver None
+        pass
 
 class Profesional(Persona):
 
-    def __init__(self, nombre, apellido, fecha_nacimiento, profesion, padre=None, hijos=[], cuil):
-        super(Profesional, self).__init__(self, nombre, apellido, fecha_nacimiento, profesion, padre=None, hijos=[])
-        self.nombre = nombre
-        self.apellido = apellido
-        self.fecha_nacimiento = fecha_nacimiento
-        self.profesion = profesion
-        self.padre = padre
-        self.hijos = hijos
+    def __init__(self, nombre, apellido, fecha_nacimiento, profesion, padre=None, hijos=[], cuil=''):
+        super().__init__(nombre, apellido, fecha_nacimiento, profesion, padre=padre, hijos=hijos)
         self.cuil = cuil
 
     def decir_hola(self):
@@ -35,20 +38,25 @@ class Profesional(Persona):
 
 class Menor(Persona):
 
-    def __init__(self, nombre, apellido, fecha_nacimiento, padre=None, hijos=[], cuil):
-        super(Menor, self).__init__(self, nombre, apellido, fecha_nacimiento, padre=None, hijos=[], cuil)
-        self.nombre = nombre
-        self.apellido = apellido
-        self.fecha_nacimiento = fecha_nacimiento
-        self.padre = padre
-        self.hijos = hijos
-        self.cuil = cuil
+    def __init__(self, nombre, apellido, fecha_nacimiento, padre=None, hijos=[]):
+        super().__init__(nombre, apellido, fecha_nacimiento, padre=padre, hijos=hijos)
 
     def agregar_hijo(self, hijo):
-        print('Un menor no puede tener hijos')
+        print("Un menor no puede tener hijos")
 
 
-persona = Persona('Carlos', 'Lopez', '12/12/1999', 'carpintero', None, [])
+'''persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero', None, [])
 print(persona.decir_hola())
-profesional = Profesional('Victor'. 'Gutierrez', '12/09/1988', 'abogado', None, [], '23456778')
-print(profesional.decir_hola())
+profesional = Profesional('Victor', 'Gutierrez', datetime.date(1999, 10, 1), 'abogado', None, [], '23456778')
+print(profesional.decir_hola())'''
+
+persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero')
+
+persona.agregar_hijo(Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero'))
+persona.agregar_hijo(Persona('Lucas', 'Lopez', datetime.date(1994, 5, 4), 'carpintero'))
+menor = Menor('Mateo', 'Gonzalez', datetime.date(2010, 11, 3), None, [])
+
+print(menor.agregar_hijo(Persona('Lucas', 'Lopez', datetime.date(1994, 5, 4))))
+
+print('Cantidad de hijos: ' + str(persona.cant_hijos()))
+

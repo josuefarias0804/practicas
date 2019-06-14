@@ -14,9 +14,11 @@ class Persona:
 
     def edad(self):
         today = date.today()
-        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month,
+                                                                                      self.fecha_nacimiento.day))
 
 
 persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero')
 
-print('La profesion de ' + persona.nombre_completo() + ' es ' + persona.profesion + ' y tiene ' + persona.edad() + ' años')
+print('La profesion de ' + persona.nombre_completo() + ' es ' + persona.profesion + ' y tiene ' + str(persona.edad())
+      + ' años')
