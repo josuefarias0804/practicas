@@ -24,9 +24,13 @@ class Persona:
         self.hijos.append(hijo)
 
 
-
+edadHijos = []
 persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero', None, [])
 persona.agregar_hijo(Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero'))
 persona.agregar_hijo(Persona('Lucas', 'Lopez', datetime.date(1994, 5, 4), 'carpintero'))
 
+
 print('La profesion de ' + persona.nombre_completo() + ' es ' + persona.profesion + ' y tiene ' + str(persona.edad()) + ' años')
+
+edadHijos.append(persona.edad())
+print(edadHijos)

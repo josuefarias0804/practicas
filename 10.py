@@ -1,9 +1,14 @@
 lista_a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+lista_b = []
 
-i=0
+for elemento in lista_a:
+    if elemento > 5:
+        lista_a = elemento * 2
+        lista_b.append(lista_a)
 
-for i in range(0, len(lista_a)):
-    if lista_a[i] > 5:
-        lista_a[i] = lista_a[i]*2
-    i+1
-print(lista_a)
+print(lista_b)
+
+
+
+
+# recorrerlo con foreach, mostrar solo los valores mayores a 5 multiplicados x 2

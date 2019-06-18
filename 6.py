@@ -18,7 +18,8 @@ class Persona:
                                                                                       self.fecha_nacimiento.day))
 
 
-persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero')
+persona = Persona('Carlos', 'Lopez', datetime.date(1995, 10, 1), 'carpintero')
 
 print('La profesion de ' + persona.nombre_completo() + ' es ' + persona.profesion + ' y tiene ' + str(persona.edad())
       + ' años')
+

@@ -1,4 +1,5 @@
 import datetime
+from datetime import date
 
 class Persona:
 
@@ -26,6 +27,12 @@ class Persona:
     def hijo_mayor(self):
         #devolver el hijo mayor, si no hay ninguno devolver None
         pass
+
+    def edad(self):
+        today = date.today()
+        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month,
+                                                                                      self.fecha_nacimiento.day))
+
 
 class Profesional(Persona):
 
@@ -59,4 +66,16 @@ menor = Menor('Mateo', 'Gonzalez', datetime.date(2010, 11, 3), None, [])
 print(menor.agregar_hijo(Persona('Lucas', 'Lopez', datetime.date(1994, 5, 4))))
 
 print('Cantidad de hijos: ' + str(persona.cant_hijos()))
+
+edadHijos = []
+edadHijos.append(persona.edad())
+print(edadHijos)
+
+
+
+
+
+
+
+# hijoMayor
 
