@@ -28,15 +28,20 @@ class Persona:
         i=0
         lista_edades = []
         todas_edades = []
+        edad_personas = None
         personas = None
         maximo = None
-        for elemento in self.hijos:
-            personas = elemento
-            lista_edades.append(personas)
-            edad_personas = personas.edad()
-            todas_edades.append(edad_personas)
-            maximo = max(todas_edades)
-        return personas
+        for elemento in self.hijos:             # recorré la lista de hijos [(laura), (matias)]
+            personas = elemento                 # persona1 (laura) -- luego persona2 (matias)
+            lista_edades.append(personas)       # lista_edades = persona1(laura) -- luego persona2(matias)
+            edad_personas = personas.edad()     # edad_personas = 18 (edad de laura) -- luego 14 (edad de matias)
+            todas_edades.append(edad_personas)  # todas_edades = [18] -- luego [18, 14]
+            maximo = max(todas_edades)          # maximo = 18
+        if edad_personas == maximo:             # si 18 = 18     -- luego si 14 = 18
+            return personas
+            # devolvé persona1(laura)
+        else:                                   # sino
+            return personas                     # devolvé persona1(laura)
 
 
 
@@ -71,8 +76,9 @@ print(profesional.decir_hola())'''
 
 
 persona = Persona('Carlos', 'Lopez', datetime.date(1990, 10, 1), 'carpintero')
-persona.agregar_hijo(Menor('Matias', 'Lopez', datetime.date(2005, 10, 1), 'carpintero'))
 persona.agregar_hijo(Menor('Laura', 'Lopez', datetime.date(2000, 10, 1), 'carpintero'))
+persona.agregar_hijo(Menor('Matias', 'Lopez', datetime.date(2005, 10, 1), 'carpintero'))
+
 
 otra_persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero')
 print(otra_persona.hijo_mayor())
