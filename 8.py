@@ -25,23 +25,38 @@ class Persona:
         return len(self.hijos)
 
     def hijo_mayor(self):
-        i=0
-        lista_edades = []
-        todas_edades = []
-        edad_personas = None
-        personas = None
-        maximo = None
-        for elemento in self.hijos:             # recorré la lista de hijos [(laura), (matias)]
-            personas = elemento                 # persona1 (laura) -- luego persona2 (matias)
-            lista_edades.append(personas)       # lista_edades = persona1(laura) -- luego persona2(matias)
-            edad_personas = personas.edad()     # edad_personas = 18 (edad de laura) -- luego 14 (edad de matias)
-            todas_edades.append(edad_personas)  # todas_edades = [18] -- luego [18, 14]
-            maximo = max(todas_edades)          # maximo = 18
-        if edad_personas == maximo:             # si 18 = 18     -- luego si 14 = 18
-            return personas
-            # devolvé persona1(laura)
-        else:                                   # sino
-            return personas                     # devolvé persona1(laura)
+        hijoMayor = None
+
+        for hijo in self.hijos:
+            if hijoMayor is None:
+                hijoMayor = hijo
+                if hijoMayor.fecha_nacimiento <= hijo.fecha_nacimiento:
+                    hijoMayor = hijo
+            else:
+                if hijoMayor.fecha_nacimiento < hijo.fecha_nacimiento:
+                    hijoMayor = hijoMayor
+                else:
+                    hijoMayor = hijo
+        return hijoMayor
+
+    def tiene_hijo_con_nombre(self, nombre):
+        nombre_hijo = None
+        for hijo in self.hijos:
+            if nombre_hijo == None:
+                nombre_hijo = hijo.nombre
+                if nombre_hijo == nombre:
+                    return True
+                else:
+                    nombre_hijo = ''
+            else:
+                if hijo.nombre == nombre:
+                    return True
+                else:
+                    nombre_hijo = hijo.nombre
+        return False
+
+
+
 
 
 
@@ -76,17 +91,18 @@ print(profesional.decir_hola())'''
 
 
 persona = Persona('Carlos', 'Lopez', datetime.date(1990, 10, 1), 'carpintero')
+persona.agregar_hijo(Menor('Nadia', 'Lopez', datetime.date(1984, 10, 1), 'carpintero'))
 persona.agregar_hijo(Menor('Laura', 'Lopez', datetime.date(2000, 10, 1), 'carpintero'))
 persona.agregar_hijo(Menor('Matias', 'Lopez', datetime.date(2005, 10, 1), 'carpintero'))
-
-
+persona.agregar_hijo(Menor('Ariel', 'Lopez', datetime.date(1988, 10, 1), 'carpintero'))
+persona.agregar_hijo(Menor('Marta', 'Lopez', datetime.date(1974, 10, 1), 'carpintero'))
+persona.agregar_hijo(Menor('Dante', 'Lopez', datetime.date(1986, 10, 1), 'carpintero'))
 otra_persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero')
+
+
+print(persona.tiene_hijo_con_nombre('Luis'))
 print(otra_persona.hijo_mayor())
-
 print(f'Mi hijo mayor se llama {persona.hijo_mayor().nombre_completo()}')
-
-
-
 print('Cantidad de hijos: ' + str(persona.cant_hijos()))
 
 
