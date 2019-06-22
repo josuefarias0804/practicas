@@ -57,7 +57,22 @@ class Persona:
 
 
 
-
+    def hijo_menor_edad(self, nombre):
+        hijo_menor_ed = None
+        for hijo in self.hijos:
+            if hijo_menor_ed == None:
+                hijo_menor_ed = hijo
+                if hijo.nombre == nombre:
+                    if hijo.edad() < 18:
+                        return 'es menor de edad'
+                    else:
+                        return 'no es menor de edad'
+            else:
+                if hijo.nombre == nombre:
+                    if hijo.edad() < 18:
+                        return 'es menor de edad'
+                    else:
+                        return 'no es menor de edad'
 
 
     def edad(self):
@@ -98,12 +113,14 @@ persona.agregar_hijo(Menor('Ariel', 'Lopez', datetime.date(1988, 10, 1), 'carpin
 persona.agregar_hijo(Menor('Marta', 'Lopez', datetime.date(1974, 10, 1), 'carpintero'))
 persona.agregar_hijo(Menor('Dante', 'Lopez', datetime.date(1986, 10, 1), 'carpintero'))
 otra_persona = Persona('Carlos', 'Lopez', datetime.date(1999, 10, 1), 'carpintero')
+otra_persona.agregar_hijo(Menor('Cristian', 'Saavedra', datetime.date(1990, 11, 2), 'carpintero'))
 
 
-print(persona.tiene_hijo_con_nombre('Luis'))
-print(otra_persona.hijo_mayor())
+print(f'Tengo un hijo con ese nombre (True/False): {str(persona.tiene_hijo_con_nombre("Luis"))}')   # Lo convertí a string para concatenar la frase y que quede mejor
 print(f'Mi hijo mayor se llama {persona.hijo_mayor().nombre_completo()}')
-print('Cantidad de hijos: ' + str(persona.cant_hijos()))
+print(f'Soy otra persona y mi hijo mayor se llama {otra_persona.hijo_mayor().nombre_completo()}')
+print(f'Cantidad de hijos: {str(persona.cant_hijos())}')
+print(f'Mi hijo {persona.hijo_menor_edad("Nadia")}')
 
 
 
@@ -113,5 +130,5 @@ print('Cantidad de hijos: ' + str(persona.cant_hijos()))
 
 
 
-# hijoMayor
+
 
